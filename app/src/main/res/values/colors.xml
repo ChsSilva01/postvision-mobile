@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="secundary_purple_500">#1B0066</color>
+    <color name="highlight_yellow_500">#DBCD2C</color>
+    <color name="highlight_yellow_600">#FFF370</color>
+    <color name="primary_offwhite_500">#F1F1FB</color>
+    <color name="highlight_black_500">#333333</color>
+    <color name="highlight_black_700">#606060</color>
+    <color name="highlight_black_800">#979797</color>
+
+</resources>
