@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--general dimensions-->
+    <dimen name="margin_left">25dp</dimen>
+    <dimen name="standard_width">345dp</dimen>
+    <dimen name="h1_text">32dp</dimen>
+    <dimen name="h2_text">24dp</dimen>
+    <dimen name="h3_text">16dp</dimen>
+
+    <!--signup dimensions-->
+    <dimen name="signup_margin_top">10dp</dimen>
+</resources>
