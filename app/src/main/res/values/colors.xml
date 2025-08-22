@@ -9,5 +9,6 @@
     <color name="highlight_black_500">#333333</color>
     <color name="highlight_black_700">#606060</color>
     <color name="highlight_black_800">#979797</color>
+    <color name="purple_800">#DACCFF</color>
 
 </resources>
