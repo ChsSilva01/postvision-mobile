@@ -10,17 +10,30 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.example.postvision.ui.theme.White
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = SecundaryPurple500,
+    secondary = HighlightYellow500,
+    tertiary = HighlightYellow600,
+    background = White,
+    onBackground = PrimaryOffWhite500,
+    surface = HighlightBlack500,
+    onSurface = HighlightBlack700,
+    surfaceVariant = HighlightBlack800
+
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = SecundaryPurple500,
+    secondary = HighlightYellow500,
+    tertiary = HighlightYellow600,
+    background = White,
+    onBackground = PrimaryOffWhite500,
+    surface = HighlightBlack500,
+    onSurface = HighlightBlack700,
+    surfaceVariant = HighlightBlack800
+
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -34,10 +47,10 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun PostvisionTheme(
+fun PostVisionTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

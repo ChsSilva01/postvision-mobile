@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "postvision"
+rootProject.name = "PostVision"
 include(":app")
  

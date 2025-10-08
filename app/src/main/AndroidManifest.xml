@@ -10,13 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Postvision"
+        android:theme="@style/Theme.PostVision"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivy"
+            android:name=".HomeActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Postvision">
+            android:theme="@style/Theme.PostVision">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
