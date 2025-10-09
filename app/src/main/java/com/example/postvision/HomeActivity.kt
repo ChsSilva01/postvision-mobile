@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -61,12 +62,13 @@ fun WrapperHome(){
             .fillMaxHeight(),
             color = MaterialTheme.colorScheme.onBackground)
         {
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = 24.dp, vertical = 22.dp)
-                    .width(345.dp)
-                    .height(814.dp),
-            ) {
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 24.dp, vertical = 22.dp)
+                .width(345.dp)
+                .height(814.dp),
+
+        ) {
                 FlowRow(
                     modifier = Modifier.width(345.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -169,8 +171,226 @@ fun WrapperHome(){
                                     }
                             }
                     }
+
+                    Row(modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 15.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                        ){
+
+                        Card(modifier = Modifier
+                            .width(220.dp)
+                            .height(96.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.onPrimary
+                            )){
+                            Column(modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .padding(start = 28.dp),
+                                verticalArrangement = Arrangement.Center,
+                                ) {
+                                    Text(
+                                        "Estatísticas",
+                                        fontFamily = Raleway,
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+                                    Text(
+                                        "Verifique as estatísticas das suas ultimas sessões",
+                                        fontFamily = Raleway,
+                                        fontSize = 14.sp
+                                    )
+                            }
+                        }
+                        Card(modifier = Modifier
+                            .width(115.dp)
+                            .height(96.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.onBackground
+                            ),
+                            border = BorderStroke(1.5.dp, MaterialTheme.colorScheme.surface)){
+                            Column(modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .padding(start = 24.dp),
+                                verticalArrangement = Arrangement.Center,
+
+                                ) {
+                                Text(
+                                    "Ver mais detalhes",
+                                    fontFamily = Raleway,
+                                    fontSize = 16.sp,
+                                )
+                            }
+                        }
+                    }
                 }
 
+                // Sugestões
+
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 15.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ){
+                    Card(modifier = Modifier
+                        .width(115.dp)
+                        .height(96.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.onBackground
+                        ),
+                        border = BorderStroke(1.5.dp, MaterialTheme.colorScheme.surface)){
+                        Column(modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight()
+                            .padding(start = 24.dp),
+                            verticalArrangement = Arrangement.Center,
+
+                            ) {
+                            Text(
+                                "Ver mais detalhes",
+                                fontFamily = Raleway,
+                                fontSize = 16.sp,
+                            )
+                        }
+                    }
+                    Card(modifier = Modifier
+                        .width(220.dp)
+                        .height(96.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.primary
+                        )){
+                        Column(modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight()
+                            .padding(start = 28.dp),
+                            verticalArrangement = Arrangement.Center,
+                        ) {
+                            Text(
+                                "Sugestões",
+                                fontFamily = Raleway,
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = MaterialTheme.colorScheme.background
+                            )
+                            Text(
+                                "Verifique as estatísticas das suas ultimas sessões",
+                                fontFamily = Raleway,
+                                fontSize = 14.sp,
+                                color = MaterialTheme.colorScheme.background
+                            )
+                        }
+                    }
+                }
+
+                Card(modifier = Modifier
+                    .width(345.dp)
+                    .height(143.dp)
+                    .padding(top = 10.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.background
+                    )) {
+                        Row(modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(),
+                            horizontalArrangement = Arrangement.SpaceAround,
+                            verticalAlignment = Alignment.CenterVertically) {
+                            Image(
+                                modifier = Modifier
+                                    .width(72.dp)
+                                    .height(95.63.dp),
+                                painter = painterResource(R.drawable.streak_graph),
+                                contentDescription = "Image from streak graph"
+                            )
+                            Column(modifier = Modifier
+                                .fillMaxHeight()
+                                .width(163.dp),
+                                verticalArrangement = Arrangement.Center
+                                ) {
+                                Text(
+                                    "Streak",
+                                    fontFamily = Raleway,
+                                    fontSize = 30.sp,
+                                    color = MaterialTheme.colorScheme.surface,
+                                    fontWeight = FontWeight.Bold
+                                )
+
+                                Text(
+                                    "Realize as análises para aumentar seu streak",
+                                    fontFamily = Raleway,
+                                    fontSize = 14.sp,
+                                    color = MaterialTheme.colorScheme.surface,
+                                )
+                            }
+                        }
+                }
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(start = 89.dp, top = 10.dp)){
+                    Card(modifier = Modifier
+                        .width(168.dp)
+                        .height(69.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.background
+                        )
+                        ) {
+                            Row(modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceAround){
+                                Column(modifier = Modifier
+                                    .width(25.dp)
+                                    .height(45.dp)) {
+                                        Image(modifier = Modifier
+                                            .width(25.dp)
+                                            .height(27.dp),
+                                            painter = painterResource(R.drawable.home_graph),
+                                            contentDescription = "Image from cam graph")
+                                        Text(
+                                            "Inicio",
+                                            fontFamily = Raleway,
+                                            fontSize = 10.sp,
+                                            color = MaterialTheme.colorScheme.surface
+                                        )
+                                }
+
+                                Column(modifier = Modifier
+                                    .width(25.dp)
+                                    .height(45.dp)) {
+                                    Image(modifier = Modifier
+                                        .width(25.dp)
+                                        .height(27.dp),
+                                        painter = painterResource(R.drawable.stats_graph),
+                                        contentDescription = "Image from stats graph")
+                                    Text(
+                                        "Stats",
+                                        fontFamily = Raleway,
+                                        fontSize = 10.sp,
+                                        color = MaterialTheme.colorScheme.surface
+                                    )
+                                }
+
+                                Column(modifier = Modifier
+                                    .width(25.dp)
+                                    .height(45.dp)) {
+                                    Image(modifier = Modifier
+                                        .width(25.dp)
+                                        .height(27.dp),
+                                        painter = painterResource(R.drawable.profile_graph),
+                                        contentDescription = "Image from profile graph")
+                                    Text(
+                                        "Perfil",
+                                        fontFamily = Raleway,
+                                        fontSize = 10.sp,
+                                        color = MaterialTheme.colorScheme.surface
+                                    )
+                                }
+                            }
+                    }
+                }
             }
         }
     }

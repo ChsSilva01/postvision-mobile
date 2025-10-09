@@ -20,7 +20,8 @@ private val DarkColorScheme = darkColorScheme(
     onBackground = PrimaryOffWhite500,
     surface = HighlightBlack500,
     onSurface = HighlightBlack700,
-    surfaceVariant = HighlightBlack800
+    surfaceVariant = HighlightBlack800,
+    onPrimary = Purple700
 
 )
 
@@ -32,8 +33,8 @@ private val LightColorScheme = lightColorScheme(
     onBackground = PrimaryOffWhite500,
     surface = HighlightBlack500,
     onSurface = HighlightBlack700,
-    surfaceVariant = HighlightBlack800
-
+    surfaceVariant = HighlightBlack800,
+    onPrimary = Purple700
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

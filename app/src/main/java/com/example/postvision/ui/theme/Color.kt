@@ -11,6 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val SecundaryPurple500 = Color(0xFF1B0066)
+val Purple700 = Color(0xFFDACCFF)
 val HighlightYellow500 = Color(0xFFDBCD2C)
 val HighlightYellow600 = Color(0xFFFFF370)
 val PrimaryOffWhite500 = Color(0xFFF1F1FB)
