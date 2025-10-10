@@ -48,7 +48,7 @@ class StepByStep : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PostVisionTheme {
-
+                WraapperStepByStep()
             }
         }
     }

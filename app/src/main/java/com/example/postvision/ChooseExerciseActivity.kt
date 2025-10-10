@@ -36,7 +36,7 @@ class ChooseExerciseActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PostVisionTheme {
-
+                WraapperChooseExercice()
             }
         }
     }

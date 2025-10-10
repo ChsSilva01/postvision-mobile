@@ -59,4 +59,17 @@ dependencies {
 
     // importing the google fonts dependency
     implementation("androidx.compose.ui:ui-text-google-fonts:1.9.2")
+
+    // importing the cameraX dependecy
+    implementation("androidx.compose.material:material-icons-extended:1.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
+    implementation("androidx.compose.runtime:runtime-livedata:1.7.0")
+
+    val cameraxVersion = "1.5.0"
+    implementation("androidx.camera:camera-core:${cameraxVersion}")
+    implementation("androidx.camera:camera-camera2:${cameraxVersion}")
+    implementation("androidx.camera:camera-lifecycle:${cameraxVersion}")
+    implementation("androidx.camera:camera-video:${cameraxVersion}")
+    implementation("androidx.camera:camera-view:${cameraxVersion}")
+    implementation("androidx.camera:camera-extensions:${cameraxVersion}")
 }
