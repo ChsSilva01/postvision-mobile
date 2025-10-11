@@ -19,8 +19,8 @@ val Raleway = FontFamily(
 val Typography = Typography(
     titleLarge = TextStyle(
         fontFamily = Raleway,
-        fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 13.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     )

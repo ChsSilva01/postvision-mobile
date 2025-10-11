@@ -48,14 +48,14 @@ class StepByStep : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PostVisionTheme {
-                WraapperStepByStep()
+                WrapperStepByStep()
             }
         }
     }
 }
 
 @Composable
-fun WraapperStepByStep(){
+fun WrapperStepByStep(){
     PostVisionTheme() {
         Surface(modifier = Modifier
             .fillMaxWidth()
@@ -260,5 +260,5 @@ fun WraapperStepByStep(){
 @Preview
 @Composable
 fun MobilePreviewStep(){
-    WraapperStepByStep()
+    WrapperStepByStep()
 }
