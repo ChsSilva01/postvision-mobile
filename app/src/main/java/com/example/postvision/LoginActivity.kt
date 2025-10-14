@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -38,6 +40,8 @@ import androidx.compose.ui.unit.sp
 import com.example.postvision.ui.theme.PostVisionTheme
 import com.example.postvision.ui.theme.Raleway
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 
 
 class LoginActivity : ComponentActivity() {
@@ -120,6 +124,18 @@ fun WrapperLogin(){
                             fontSize = 13.sp,
                             fontFamily = Raleway,
                             fontWeight = FontWeight.SemiBold,
+                        ),
+                        colors = TextFieldDefaults.colors(
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            disabledIndicatorColor = Color.Transparent,
+                            errorIndicatorColor = Color.Transparent,
+
+                            focusedContainerColor = MaterialTheme.colorScheme.background,
+                            unfocusedContainerColor = MaterialTheme.colorScheme.background,
+                            disabledContainerColor = MaterialTheme.colorScheme.background,
+                            errorContainerColor = MaterialTheme.colorScheme.background
+
 
                         ),
                         value = text,
@@ -128,6 +144,89 @@ fun WrapperLogin(){
                     )
 
                 }
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(66.dp)
+                    .offset(y = 67.dp)){
+                    Text(
+                        "Senha",
+                        fontSize = 13.sp,
+                        fontFamily = Raleway,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    TextField(
+                        modifier = Modifier
+                            .width(345.dp)
+                            .height(40.dp),
+                        textStyle = TextStyle(
+                            fontSize = 13.sp,
+                            fontFamily = Raleway,
+                            fontWeight = FontWeight.SemiBold,
+                        ),
+                        colors = TextFieldDefaults.colors(
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            disabledIndicatorColor = Color.Transparent,
+                            errorIndicatorColor = Color.Transparent,
+
+                            focusedContainerColor = MaterialTheme.colorScheme.background,
+                            unfocusedContainerColor = MaterialTheme.colorScheme.background,
+                            disabledContainerColor = MaterialTheme.colorScheme.background,
+                            errorContainerColor = MaterialTheme.colorScheme.background
+
+
+                        ),
+                        value = text,
+                        onValueChange = { newText: String -> text = newText },
+                        shape = RoundedCornerShape(20.dp),
+                    )
+
+                }
+
+                Column(
+                    modifier = Modifier.offset(y = 151.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ){
+                    Button(modifier = Modifier
+                        .width(345.dp)
+                        .height(51.dp),
+                        onClick = {},
+                        shape = RoundedCornerShape(10.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+
+                        ) {
+                        Text(
+                            "Entrar",
+                            color = MaterialTheme.colorScheme.background,
+                            fontSize = 13.sp,
+                            fontFamily = Raleway,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+
+                    Row(modifier = Modifier
+                        .width(195.dp)
+                        .offset(y = 20.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween){
+                        Text(
+                            "Não tem conta?",
+                            fontFamily = Raleway,
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.onSurface
+
+                        )
+                        Text(
+                            "Cadastre-se",
+                            fontFamily = Raleway,
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
+
             }
         }
     }

@@ -72,4 +72,8 @@ dependencies {
     implementation("androidx.camera:camera-video:${cameraxVersion}")
     implementation("androidx.camera:camera-view:${cameraxVersion}")
     implementation("androidx.camera:camera-extensions:${cameraxVersion}")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0") // Versão 2.7.0 ou mais recente
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")      // Versão 2.7.0 ou mais recente
+
 }
