@@ -1,4 +1,5 @@
 [versions]
+# --- Suas Versões Atuais Mantidas ---
 agp = "8.10.1"
 kotlin = "2.0.21"
 coreKtx = "1.17.0"
@@ -10,8 +11,32 @@ activityCompose = "1.11.0"
 composeBom = "2024.09.00"
 uiTextGoogleFontsVersion = "1.9.2"
 
+# --- Versões Adicionadas/Atualizadas da Referência ---
+# Nota: Estou usando a versão cameraView = "1.2.0-alpha02" para cameraX
+cameraView = "1.2.0-alpha02"
+navigationCompose = "2.9.3"
+tasksVision = "0.20230731"
+window = "1.4.0"
+navigationComposeJvmstubs = "2.9.3" # Embora não seja comum, foi mantido por estar na referência
+
 [libraries]
+# --- Dependências CameraX Adicionadas (Usando a versão 'cameraView') ---
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraView" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraView" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraView" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraView" }
+
+# --- Dependências de Navegação Adicionadas ---
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation-compose-jvmstubs = { group = "androidx.navigation", name = "navigation-compose-jvmstubs", version.ref = "navigationComposeJvmstubs" }
+
+# --- Dependências MediaPipe e Window Adicionadas ---
+androidx-window = { module = "androidx.window:window", version.ref = "window" }
+tasks-vision = { module = "com.google.mediapipe:tasks-vision", version.ref = "tasksVision" }
+
+# --- Suas Dependências Existentes Mantidas ---
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFontsVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -31,4 +56,3 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
