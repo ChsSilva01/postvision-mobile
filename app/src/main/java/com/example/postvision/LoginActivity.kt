@@ -50,7 +50,7 @@ class LoginActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PostVisionTheme {
-
+                WrapperLogin()
             }
         }
     }

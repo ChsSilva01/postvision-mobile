@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CornerSize
@@ -204,7 +205,7 @@ fun WrapperHome(){
                             }
                         }
                         Card(modifier = Modifier
-                            .width(115.dp)
+                            .width(100.dp)
                             .height(96.dp),
                             colors = CardDefaults.cardColors(
                                 containerColor = MaterialTheme.colorScheme.onBackground
@@ -213,7 +214,7 @@ fun WrapperHome(){
                             Column(modifier = Modifier
                                 .fillMaxWidth()
                                 .fillMaxHeight()
-                                .padding(start = 24.dp),
+                                .offset(x = 15.dp),
                                 verticalArrangement = Arrangement.Center,
 
                                 ) {
@@ -235,7 +236,7 @@ fun WrapperHome(){
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Card(modifier = Modifier
-                        .width(115.dp)
+                        .width(100.dp)
                         .height(96.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = MaterialTheme.colorScheme.onBackground
@@ -244,8 +245,9 @@ fun WrapperHome(){
                         Column(modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight()
-                            .padding(start = 24.dp),
+                                .offset(x = 15.dp),
                             verticalArrangement = Arrangement.Center,
+
 
                             ) {
                             Text(
