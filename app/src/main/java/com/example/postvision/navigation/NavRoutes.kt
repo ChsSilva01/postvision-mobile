@@ -5,4 +5,5 @@ package com.example.postvision.navigation
 object NavRoutes {
     const val LOGIN = "./LoginActivity"
     const val HOME = "./HomeActivity"
+    const val CHOOSEEXERCICE = "./ChoseExercise"
 }

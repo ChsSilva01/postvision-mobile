@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.postvision.ui.theme.PostVisionTheme
 import com.example.postvision.ui.theme.Raleway
-import kotlinx.coroutines.selects.select
 
 class ChooseExerciseActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

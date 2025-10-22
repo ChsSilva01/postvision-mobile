@@ -1,3 +1,4 @@
+// MainActivity.kt
 package com.example.postvision
 
 import android.os.Bundle
@@ -14,7 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.postvision.navigation.NavRoutes
+import com.example.postvision.navigation.NavRoutes // Assumindo que este objeto existe
 import com.example.postvision.ui.theme.PostVisionTheme
 
 class MainActivity : ComponentActivity() {
@@ -47,21 +48,24 @@ fun AppNavigation() {
         modifier = Modifier.fillMaxSize()
     ) {
 
-       /* // 4. Definir o destino LOGIN
+        // 4. Definir o destino LOGIN
         composable(NavRoutes.LOGIN) {
-            // CORRIGIDO: Chamando o Composable WrapperLogin e passando a ação
-            WrapperLogin( // <--- CORRIGIDO: Era LoginActivity, agora é WrapperLogin
+            // CORRIGIDO: Chamando o Composable WrapperLogin (do Login.kt)
+            WrapperLogin(
                 onNavigateToHome = {
                     // 5. Chamar a navegação para a rota HOME
-                    navController.navigate(NavRoutes.HOME)
+                    navController.navigate(NavRoutes.HOME) {
+                        // Limpa a pilha para que o usuário não volte para o Login
+                        popUpTo(NavRoutes.LOGIN) { inclusive = true }
+                    }
                 }
             )
         }
 
-        // 4. ADICIONAR: Definir o destino HOME
+        // 6. ADICIONAR: Definir o destino HOME
         composable(NavRoutes.HOME) {
-            // O Composable WrapperHome é a tela de destino.
+            // O Composable WrapperHome (do Home.kt)
             WrapperHome()
-        }*/
+        }
     }
 }
