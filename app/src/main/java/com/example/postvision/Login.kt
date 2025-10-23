@@ -67,7 +67,7 @@ fun WrapperLogin(
                     modifier = Modifier
                         .width(295.dp)
                         .height(201.dp)
-                        .offset(x = (-75).dp)
+                        .offset(x = (-75).dp, y = 5.dp)
                         .align(Alignment.BottomStart),
 
                     painter = painterResource(R.drawable.eye_two_graph),

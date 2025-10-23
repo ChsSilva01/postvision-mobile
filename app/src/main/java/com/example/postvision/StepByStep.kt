@@ -42,7 +42,7 @@ import com.example.postvision.ui.theme.PostVisionTheme
 import com.example.postvision.ui.theme.Raleway
 import kotlinx.coroutines.selects.select
 
-class StepByStep : ComponentActivity() {
+/*class StepByStep : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,7 +52,7 @@ class StepByStep : ComponentActivity() {
             }
         }
     }
-}
+}*/
 
 @Composable
 fun WrapperStepByStep(){
@@ -117,7 +117,8 @@ fun WrapperStepByStep(){
                                             "Posição inicial:",
                                             fontFamily = Raleway,
                                             fontSize = 16.sp,
-                                            fontWeight = FontWeight.SemiBold
+                                            fontWeight = FontWeight.SemiBold,
+                                            color = MaterialTheme.colorScheme.surface
                                         )
                                     }
                                 }
@@ -128,6 +129,7 @@ fun WrapperStepByStep(){
                                     fontSize = 16.sp,
                                     lineHeight = 15.sp,
                                     textAlign = TextAlign.Justify,
+                                    color = MaterialTheme.colorScheme.surface
                                 )
                         }
                 }
@@ -174,7 +176,8 @@ fun WrapperStepByStep(){
                                     "Agache com controle:",
                                     fontFamily = Raleway,
                                     fontSize = 16.sp,
-                                    fontWeight = FontWeight.SemiBold
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = MaterialTheme.colorScheme.surface
                                 )
                             }
                         }
@@ -185,6 +188,7 @@ fun WrapperStepByStep(){
                             fontSize = 16.sp,
                             lineHeight = 15.sp,
                             textAlign = TextAlign.Justify,
+                            color = MaterialTheme.colorScheme.surface
                         )
                     }
                 }
@@ -220,7 +224,8 @@ fun WrapperStepByStep(){
                                 "Volte a posição inicial:",
                                 fontFamily = Raleway,
                                 fontSize = 16.sp,
-                                fontWeight = FontWeight.SemiBold
+                                fontWeight = FontWeight.SemiBold,
+                                color = MaterialTheme.colorScheme.surface
                             )
                         }
                     }
@@ -231,6 +236,7 @@ fun WrapperStepByStep(){
                         fontSize = 16.sp,
                         lineHeight = 15.sp,
                         textAlign = TextAlign.Justify,
+                        color = MaterialTheme.colorScheme.surface
                     )
                 }
 

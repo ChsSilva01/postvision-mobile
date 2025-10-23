@@ -48,24 +48,41 @@ fun AppNavigation() {
         modifier = Modifier.fillMaxSize()
     ) {
 
-        // 4. Definir o destino LOGIN
+        // 1. Rota de LOGIN -> HOME
         composable(NavRoutes.LOGIN) {
-            // CORRIGIDO: Chamando o Composable WrapperLogin (do Login.kt)
             WrapperLogin(
                 onNavigateToHome = {
-                    // 5. Chamar a navegação para a rota HOME
                     navController.navigate(NavRoutes.HOME) {
-                        // Limpa a pilha para que o usuário não volte para o Login
+                        // Limpa a pilha para não voltar para o Login
                         popUpTo(NavRoutes.LOGIN) { inclusive = true }
                     }
                 }
             )
         }
 
-        // 6. ADICIONAR: Definir o destino HOME
+        // 2. Rota de HOME -> CHOOSE_EXERCISE
         composable(NavRoutes.HOME) {
-            // O Composable WrapperHome (do Home.kt)
-            WrapperHome()
+            WrapperHome(
+                onNavigateToChooseExercise = {
+                    // Navega para a tela de escolha de exercício
+                    navController.navigate(NavRoutes.CHOOSE_EXERCISE)
+                }
+            )
+        }
+
+        // 3. Rota de CHOOSE_EXERCISE -> STEP_BY_STEP
+        composable(NavRoutes.CHOOSE_EXERCISE) {
+            WrapperChooseExercice(
+                onNavigateToStepByStep = {
+                    // Navega para a tela de passo a passo
+                    navController.navigate(NavRoutes.STEP_BY_STEP)
+                }
+            )
+        }
+
+        // 4. Rota de STEP_BY_STEP (Fim da sequência por enquanto)
+        composable(NavRoutes.STEP_BY_STEP) {
+            WrapperStepByStep()
         }
     }
 }

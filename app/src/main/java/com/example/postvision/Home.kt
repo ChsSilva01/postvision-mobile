@@ -23,7 +23,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -32,6 +34,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -41,21 +44,23 @@ import androidx.compose.ui.unit.sp
 import com.example.postvision.ui.theme.PostVisionTheme
 import com.example.postvision.ui.theme.Raleway
 
-class HomeActivity : ComponentActivity() {
+/*class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             PostVisionTheme {
-                WrapperHome()
+                WrapperHome(onNavigateToChooseExercise = {})
             }
         }
     }
-}
+}*/
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun WrapperHome(){
+fun WrapperHome(
+    onNavigateToChooseExercise: () -> Unit
+){
     PostVisionTheme(){
         Surface(modifier = Modifier
             .fillMaxWidth()
@@ -65,26 +70,34 @@ fun WrapperHome(){
             Column(
                 modifier = Modifier
                     .padding(horizontal = 24.dp, vertical = 22.dp)
-                    .fillMaxSize(), // CORRIGIDO: Usando fillMaxSize para responsividade
+                    .fillMaxSize(),
             ) {
                 FlowRow(
-                    modifier = Modifier.fillMaxWidth(), // CORRIGIDO: Usando fillMaxWidth
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(52.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                 )
                 {
-                    Button(onClick = {},
+                    IconButton(onClick = {},
                         modifier = Modifier
                             .width(52.dp)
                             .height(52.dp),
-                        shape = RoundedCornerShape(CornerSize(50.dp))
                     ) {
+                        Image(
+                            painter = painterResource(R.drawable.imagem),
+                            contentDescription = "Imagem from profile"
+                        )
                     }
-                    Button(onClick = {},
+                    IconButton(onClick = {},
                         modifier = Modifier
                             .width(21.dp)
-                            .height(23.dp),
-                        shape = RoundedCornerShape(CornerSize(50.dp)),
-                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)) {
+                            .fillMaxHeight(),
+                    ){
+                        Image(
+                            painter = painterResource(R.drawable.notification_icon),
+                            contentDescription = "Imagem from profile"
+                        )
                     }
                 }
                 Row(
@@ -92,10 +105,10 @@ fun WrapperHome(){
 
                 ){
                     Text(
-                        "Olá Renan",
+                        "Olá Carlos",
                         fontFamily = Raleway,
                         color = MaterialTheme.colorScheme.surface
-                    );
+                    )
                 }
 
                 Column(modifier = Modifier.padding(top = 23.dp)){
@@ -137,7 +150,9 @@ fun WrapperHome(){
                                     .height(46.dp),
                                     colors = CardDefaults.cardColors(
                                         containerColor = MaterialTheme.colorScheme.primary
-                                    )) {
+                                    ),
+                                    shape = RoundedCornerShape(20.dp)
+                                ) {
                                     FlowRow(
                                         modifier = Modifier
                                             .fillMaxWidth()
@@ -148,13 +163,15 @@ fun WrapperHome(){
 
                                         Text(
                                             "Iniciar",
+                                            modifier = Modifier
+                                                .padding(start = 12.dp),
                                             fontFamily = Raleway,
                                             fontSize = 12.sp,
                                             color = MaterialTheme.colorScheme.background
                                         )
 
                                         IconButton(
-                                            onClick = {},
+                                            onClick = onNavigateToChooseExercise,
                                             modifier = Modifier
                                                 .width(35.dp)
                                                 .height(35.dp),
@@ -218,11 +235,13 @@ fun WrapperHome(){
                                 .fillMaxWidth()
                                 .fillMaxHeight(),
                                 verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
 
                                 ) {
                                 Text(
-                                    "Ver mais detalhes",
-                                    textAlign = TextAlign.Center,
+                                    "Ver mais \n " +
+                                            "detalhes",
+                                    textAlign = TextAlign.Start,
                                     fontFamily = Raleway,
                                     fontSize = 14.sp,
                                     color = MaterialTheme.colorScheme.surface
@@ -250,11 +269,13 @@ fun WrapperHome(){
                             .fillMaxWidth()
                             .fillMaxHeight(),
                             verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
 
                             ) {
                             Text(
-                                "Ver mais detalhes",
-                                textAlign = TextAlign.Center,
+                                "Receber \n" +
+                                        "Sugestões ",
+                                textAlign = TextAlign.Start,
                                 fontFamily = Raleway,
                                 fontSize = 14.sp,
                                 color = MaterialTheme.colorScheme.surface
@@ -319,7 +340,7 @@ fun WrapperHome(){
                             Text(
                                 "Streak",
                                 fontFamily = Raleway,
-                                fontSize = 30.sp,
+                                fontSize = 28.sp,
                                 color = MaterialTheme.colorScheme.surface,
                                 fontWeight = FontWeight.Bold
                             )
@@ -327,7 +348,7 @@ fun WrapperHome(){
                             Text(
                                 "Realize as análises para aumentar seu streak",
                                 fontFamily = Raleway,
-                                fontSize = 14.sp,
+                                fontSize = 13.sp,
                                 color = MaterialTheme.colorScheme.surface,
                             )
                         }
@@ -338,66 +359,109 @@ fun WrapperHome(){
                 Row(modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .offset(y = 15.dp)
+                    .width(180.dp),
+                    horizontalArrangement = Arrangement.SpaceAround
                 ){
                     Card(modifier = Modifier
-                        .width(168.dp) // Mantido fixo, assumindo que a barra inferior tem tamanho pequeno
+                        .fillMaxWidth()
                         .height(69.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = MaterialTheme.colorScheme.background
-                        )
+                        ),
+                        shape = RoundedCornerShape(20.dp)
                     ) {
                         Row(modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceAround){
-                            Column(modifier = Modifier
-                                .width(25.dp)
-                                .height(45.dp)) {
-                                Image(modifier = Modifier
-                                    .width(25.dp)
-                                    .height(27.dp),
-                                    painter = painterResource(R.drawable.home_graph),
-                                    contentDescription = "Image from cam graph")
-                                Text(
-                                    "Inicio",
-                                    fontFamily = Raleway,
-                                    fontSize = 10.sp,
-                                    color = MaterialTheme.colorScheme.surface
-                                )
+
+                            Card(modifier = Modifier
+                                .width(50.dp)
+                                .height(57.dp),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = Color(0x52DEDEFF)
+                                ),
+                                shape = RoundedCornerShape(14.dp)
+                            ){
+                                Column(modifier = Modifier
+                                    .fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    ) {
+                                    Column(modifier = Modifier
+                                        .offset(y = 9.dp)){
+                                        Image(modifier = Modifier
+                                            .width(25.dp)
+                                            .height(27.dp),
+                                            painter = painterResource(R.drawable.home_graph),
+                                            contentDescription = "Image from cam graph")
+                                        Text(
+                                            "Início",
+                                            fontFamily = Raleway,
+                                            fontSize = 10.sp,
+                                            color = MaterialTheme.colorScheme.surface
+                                        )
+                                    }
+                                }
                             }
 
-                            Column(modifier = Modifier
-                                .width(25.dp)
-                                .height(45.dp)) {
-                                Image(modifier = Modifier
-                                    .width(25.dp)
-                                    .height(27.dp),
-                                    painter = painterResource(R.drawable.stats_graph),
-                                    contentDescription = "Image from stats graph")
-                                Text(
-                                    "Stats",
-                                    fontFamily = Raleway,
-                                    fontSize = 10.sp,
-                                    color = MaterialTheme.colorScheme.surface
+                            Card(modifier = Modifier
+                                .width(50.dp)
+                                .height(57.dp),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = MaterialTheme.colorScheme.background
                                 )
+                            ){
+                                Column(modifier = Modifier
+                                    .fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                ) {
+                                    Column(modifier = Modifier
+                                        .offset(y = 9.dp)){
+                                        Image(modifier = Modifier
+                                            .width(25.dp)
+                                            .height(27.dp),
+                                            painter = painterResource(R.drawable.stats_graph),
+                                            contentDescription = "Image from cam graph")
+                                        Text(
+                                            "Stats",
+                                            fontFamily = Raleway,
+                                            fontSize = 10.sp,
+                                            color = MaterialTheme.colorScheme.surface
+                                        )
+                                    }
+                                }
                             }
 
-                            Column(modifier = Modifier
-                                .width(25.dp)
-                                .height(45.dp)) {
-                                Image(modifier = Modifier
-                                    .width(25.dp)
-                                    .height(27.dp),
-                                    painter = painterResource(R.drawable.profile_graph),
-                                    contentDescription = "Image from profile graph")
-                                Text(
-                                    "Perfil",
-                                    fontFamily = Raleway,
-                                    fontSize = 10.sp,
-                                    color = MaterialTheme.colorScheme.surface
+
+                            Card(modifier = Modifier
+                                .width(50.dp)
+                                .height(57.dp),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = MaterialTheme.colorScheme.background
                                 )
+                            ){
+                                Column(modifier = Modifier
+                                    .fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                ) {
+                                    Column(modifier = Modifier
+                                        .offset(y = 9.dp)){
+                                        Image(modifier = Modifier
+                                            .width(25.dp)
+                                            .height(27.dp),
+                                            painter = painterResource(R.drawable.profile_graph),
+                                            contentDescription = "Image from cam graph")
+                                        Text(
+                                            "Perfil",
+                                            fontFamily = Raleway,
+                                            fontSize = 10.sp,
+                                            color = MaterialTheme.colorScheme.surface
+                                        )
+                                    }
+                                }
                             }
+
                         }
                     }
                 }
@@ -409,5 +473,5 @@ fun WrapperHome(){
 @Preview
 @Composable
 fun MobilePreview(){
-    WrapperHome()
+    WrapperHome(onNavigateToChooseExercise = {})
 }

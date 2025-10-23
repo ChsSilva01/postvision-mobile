@@ -29,20 +29,22 @@ import androidx.compose.ui.unit.sp
 import com.example.postvision.ui.theme.PostVisionTheme
 import com.example.postvision.ui.theme.Raleway
 
-class ChooseExerciseActivity : ComponentActivity() {
+/*class ChooseExerciseActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             PostVisionTheme {
-                WraapperChooseExercice()
+                WrapperChooseExercice(onNavigateToStepByStep = {})
             }
         }
     }
-}
+}*/
 
 @Composable
-fun WraapperChooseExercice(){
+fun WrapperChooseExercice(
+    onNavigateToStepByStep: () -> Unit
+){
     PostVisionTheme() {
         Surface(modifier = Modifier
             .fillMaxWidth()
@@ -164,7 +166,7 @@ fun WraapperChooseExercice(){
                     .padding(top = 282.dp)
                     .fillMaxWidth()
                     .height(51.dp),
-                    onClick = {},
+                    onClick = onNavigateToStepByStep,
                     shape = RoundedCornerShape(10.dp)
                 ) {
                     Text(
@@ -183,5 +185,5 @@ fun WraapperChooseExercice(){
 @Preview
 @Composable
 fun MobilePreviewExercice(){
-    WraapperChooseExercice()
+    WrapperChooseExercice(onNavigateToStepByStep = {})
 }
