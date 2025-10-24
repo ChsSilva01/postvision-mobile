@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -55,7 +56,9 @@ import kotlinx.coroutines.selects.select
 }*/
 
 @Composable
-fun WrapperStepByStep(){
+fun WrapperStepByStep(
+    onNavigateToCameraX: () -> Unit
+){
     PostVisionTheme() {
         Surface(modifier = Modifier
             .fillMaxWidth()
@@ -207,10 +210,13 @@ fun WrapperStepByStep(){
                         ) {
                             FlowRow(modifier = Modifier
                                 .fillMaxWidth()
-                                .fillMaxHeight(),
-                                horizontalArrangement = Arrangement.Center) {
+                                .fillMaxHeight()
+                                .align(Alignment.CenterHorizontally),
+                                horizontalArrangement = Arrangement.Center,) {
                                 Text(
                                     "3",
+                                    modifier = Modifier
+                                        .offset(y = (-1).dp),
                                     fontFamily = Raleway,
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.SemiBold,
@@ -244,13 +250,13 @@ fun WrapperStepByStep(){
                     Button(modifier = Modifier
                         .width(345.dp)
                         .height(51.dp),
-                        onClick = {},
+                        onClick = onNavigateToCameraX,
                         shape = RoundedCornerShape(10.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
 
                         ) {
                         Text(
-                            "Iniciar Passo a Passo",
+                            "Realizar Exercício",
                             color = MaterialTheme.colorScheme.background,
                             fontSize = 13.sp,
                             fontFamily = Raleway,
@@ -266,5 +272,5 @@ fun WrapperStepByStep(){
 @Preview
 @Composable
 fun MobilePreviewStep(){
-    WrapperStepByStep()
+    WrapperStepByStep(onNavigateToCameraX = {})
 }

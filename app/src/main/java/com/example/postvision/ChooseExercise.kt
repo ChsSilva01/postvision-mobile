@@ -35,14 +35,14 @@ import com.example.postvision.ui.theme.Raleway
         enableEdgeToEdge()
         setContent {
             PostVisionTheme {
-                WrapperChooseExercice(onNavigateToStepByStep = {})
+                WrapperChooseExercise(onNavigateToStepByStep = {})
             }
         }
     }
 }*/
 
 @Composable
-fun WrapperChooseExercice(
+fun WrapperChooseExercise(
     onNavigateToStepByStep: () -> Unit
 ){
     PostVisionTheme() {
@@ -184,6 +184,6 @@ fun WrapperChooseExercice(
 
 @Preview
 @Composable
-fun MobilePreviewExercice(){
-    WrapperChooseExercice(onNavigateToStepByStep = {})
+fun MobilePreviewExercise(){
+    WrapperChooseExercise(onNavigateToStepByStep = {})
 }

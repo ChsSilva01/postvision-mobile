@@ -10,13 +10,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.postvision.navigation.NavRoutes // Assumindo que este objeto existe
+import com.example.postvision.camerax.CameraScreen
+import com.example.postvision.camerax.MainViewModel
+import com.example.postvision.navigation.NavRoutes
 import com.example.postvision.ui.theme.PostVisionTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +44,9 @@ class MainActivity : ComponentActivity() {
 fun AppNavigation() {
     // 1. Criar o NavController (o cérebro da navegação)
     val navController = rememberNavController()
+
+    // 1. Obter o ViewModel, que a CameraScreen precisa
+    val mainViewModel: MainViewModel = viewModel()
 
     // 2. Configurar o NavHost (o container de telas)
     NavHost(
@@ -72,7 +79,7 @@ fun AppNavigation() {
 
         // 3. Rota de CHOOSE_EXERCISE -> STEP_BY_STEP
         composable(NavRoutes.CHOOSE_EXERCISE) {
-            WrapperChooseExercice(
+            WrapperChooseExercise(
                 onNavigateToStepByStep = {
                     // Navega para a tela de passo a passo
                     navController.navigate(NavRoutes.STEP_BY_STEP)
@@ -80,9 +87,20 @@ fun AppNavigation() {
             )
         }
 
-        // 4. Rota de STEP_BY_STEP (Fim da sequência por enquanto)
+        // 4. Rota de STEP_BY_STEP
         composable(NavRoutes.STEP_BY_STEP) {
-            WrapperStepByStep()
+            WrapperStepByStep(
+                onNavigateToCameraX = {
+                    navController.navigate(NavRoutes.CAMERA_SCREEN)
+                }
+            )
+        }
+
+        // 5. Rota da CameraX
+        composable(NavRoutes.CAMERA_SCREEN) {
+            // Chama a função Composable da tela da Câmera, passando o ViewModel
+            CameraScreen().CameraScreenContent(viewModel = mainViewModel)
+            // Nota: Se a CameraScreen precisar de um callback de volta, ele deve ser adicionado aqui.
         }
     }
 }

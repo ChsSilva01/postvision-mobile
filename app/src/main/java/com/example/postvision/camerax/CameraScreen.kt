@@ -85,213 +85,213 @@ class CameraScreen {
             },
             sheetPeekHeight = 50.dp
         ) {*/
-            if (hasPermission) {
+        if (hasPermission) {
 
-                Box(modifier = Modifier.fillMaxSize()) {
-                    CameraPreview(
-                        onPoseResult = { resultBundle ->
-                            poseResults = resultBundle
-                        },
-                        viewModel = viewModel
+            Box(modifier = Modifier.fillMaxSize()) {
+                CameraPreview(
+                    onPoseResult = { resultBundle ->
+                        poseResults = resultBundle
+                    },
+                    viewModel = viewModel
+                )
+
+                poseResults?.let {
+                    OverlayCanvas(
+                        results = it.results.first(),
+                        imageHeight = it.inputImageHeight,
+                        imageWidth = it.inputImageWidth,
+                        runningMode = RunningMode.LIVE_STREAM,
+                        isFrontCamera = true
                     )
+                }
 
-                    poseResults?.let {
-                        OverlayCanvas(
-                            results = it.results.first(),
-                            imageHeight = it.inputImageHeight,
-                            imageWidth = it.inputImageWidth,
-                            runningMode = RunningMode.LIVE_STREAM,
-                            isFrontCamera = true
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(78.dp),
+                    shape = RoundedCornerShape(bottomEnd = 10.dp, bottomStart = 10.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(start = 16.dp, bottom = 16.dp),
+                        verticalAlignment = Alignment.Bottom
+                    ){
+                        Text(
+                            "Câmera",
+                            fontFamily = Raleway,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.SemiBold
                         )
                     }
+                }
 
-                    Card(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(78.dp),
-                        shape = RoundedCornerShape(bottomEnd = 10.dp, bottomStart = 10.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.primary
-                        )
-                    ) {
-                        Row(
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(107.dp)
+                    .align(Alignment.BottomCenter),
+                    shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    ),
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalArrangement = Arrangement.SpaceAround,
+                        verticalAlignment = Alignment.CenterVertically
+                    )
+                    {
+                        IconButton(
+                            onClick = {},
                             modifier = Modifier
-                                .fillMaxSize()
-                                .padding(start = 16.dp, bottom = 16.dp),
-                                verticalAlignment = Alignment.Bottom
+                                .width(36.dp)
+                                .height(39.36.dp)
+
                         ){
-                            Text(
-                                "Câmera",
-                                fontFamily = Raleway,
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.SemiBold
+                            Icon(
+                                modifier = Modifier
+                                    .fillMaxSize(),
+                                painter = painterResource(R.drawable.icon_galery),
+                                contentDescription = "Icon from record"
                             )
                         }
-                    }
 
-                    Card(modifier = Modifier
-                        .fillMaxWidth()
-                        .height(107.dp)
-                        .align(Alignment.BottomCenter),
-                        shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.primary
-                        ),
-                    ) {
-                        Row(
+                        IconButton(
+                            onClick = {},
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp),
-                            horizontalArrangement = Arrangement.SpaceAround,
-                            verticalAlignment = Alignment.CenterVertically
+                                .width(68.dp)
+                                .height(68.dp)
+
+                        ){
+                            Icon(
+                                modifier = Modifier
+                                    .fillMaxSize(),
+                                painter = painterResource(R.drawable.icon_record),
+                                contentDescription = "Icon from record"
                             )
-                        {
-                            IconButton(
-                                onClick = {},
+                        }
+
+                        IconButton(
+                            onClick = {},
+                            modifier = Modifier
+                                .width(39.dp)
+                                .height(39.dp)
+
+                        ){
+                            Icon(
                                 modifier = Modifier
-                                    .width(36.dp)
-                                    .height(39.36.dp)
-
-                            ){
-                                Icon(
-                                    modifier = Modifier
-                                        .fillMaxSize(),
-                                    painter = painterResource(R.drawable.icon_galery),
-                                    contentDescription = "Icon from record"
-                                )
-                            }
-
-                            IconButton(
-                                onClick = {},
-                                modifier = Modifier
-                                    .width(68.dp)
-                                    .height(68.dp)
-
-                            ){
-                                Icon(
-                                    modifier = Modifier
-                                        .fillMaxSize(),
-                                    painter = painterResource(R.drawable.icon_record),
-                                    contentDescription = "Icon from record"
-                                )
-                            }
-
-                            IconButton(
-                                onClick = {},
-                                modifier = Modifier
-                                    .width(39.dp)
-                                    .height(39.dp)
-
-                            ){
-                                Icon(
-                                    modifier = Modifier
-                                        .fillMaxSize(),
-                                    painter = painterResource(R.drawable.icon_switch_cam),
-                                    contentDescription = "Icon from record"
-                                )
-                            }
+                                    .fillMaxSize(),
+                                painter = painterResource(R.drawable.icon_switch_cam),
+                                contentDescription = "Icon from record"
+                            )
                         }
                     }
-
-
-
-
                 }
 
-            } else {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("Camera permission is required.")
-                }
+
+
+
+            }
+
+        } else {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Camera permission is required.")
             }
         }
     }
+}
 
-    /**
-     * Muestra la vista previa de la cámara y analiza las imágenes en tiempo real para detectar poses.
-     *
-     * @param onPoseResult Callback que recibe los resultados de la detección de pose.
-     * @param viewModel El ViewModel que contiene la configuración actual de detección de pose
-     */
-    @Composable
-    fun CameraPreview(
-        onPoseResult: (PoseLandmarkerHelper.ResultBundle) -> Unit,
-        viewModel: MainViewModel
+/**
+ * Muestra la vista previa de la cámara y analiza las imágenes en tiempo real para detectar poses.
+ *
+ * @param onPoseResult Callback que recibe los resultados de la detección de pose.
+ * @param viewModel El ViewModel que contiene la configuración actual de detección de pose
+ */
+@Composable
+fun CameraPreview(
+    onPoseResult: (PoseLandmarkerHelper.ResultBundle) -> Unit,
+    viewModel: MainViewModel
+) {
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val cameraExecutor = remember { Executors.newSingleThreadExecutor() }
+
+    val poseLandmarkerHelper = remember(
+        viewModel.currentMinPoseDetectionConfidence,
+        viewModel.currentMinPoseTrackingConfidence,
+        viewModel.currentMinPosePresenceConfidence,
+        viewModel.currentModel,
+        viewModel.currentDelegate
     ) {
-        val context = LocalContext.current
-        val lifecycleOwner = LocalLifecycleOwner.current
-        val cameraExecutor = remember { Executors.newSingleThreadExecutor() }
+        PoseLandmarkerHelper(
+            context = context,
+            runningMode = RunningMode.LIVE_STREAM,
 
-        val poseLandmarkerHelper = remember(
-            viewModel.currentMinPoseDetectionConfidence,
-            viewModel.currentMinPoseTrackingConfidence,
-            viewModel.currentMinPosePresenceConfidence,
-            viewModel.currentModel,
-            viewModel.currentDelegate
-        ) {
-            PoseLandmarkerHelper(
-                context = context,
-                runningMode = RunningMode.LIVE_STREAM,
-
-                minPoseDetectionConfidence = viewModel.currentMinPoseDetectionConfidence,
-                minPoseTrackingConfidence = viewModel.currentMinPoseTrackingConfidence,
-                minPosePresenceConfidence = viewModel.currentMinPosePresenceConfidence,
-                currentModel = viewModel.currentModel,
-                currentDelegate = viewModel.currentDelegate,
-                poseLandmarkerHelperListener = object : PoseLandmarkerHelper.LandmarkerListener {
-                    override fun onError(error: String, errorCode: Int) {
-                        Log.e("CameraPreview", "Error: $error")
-                    }
-                    override fun onResults(resultBundle: PoseLandmarkerHelper.ResultBundle) {
-                        onPoseResult(resultBundle)
-                    }
+            minPoseDetectionConfidence = viewModel.currentMinPoseDetectionConfidence,
+            minPoseTrackingConfidence = viewModel.currentMinPoseTrackingConfidence,
+            minPosePresenceConfidence = viewModel.currentMinPosePresenceConfidence,
+            currentModel = viewModel.currentModel,
+            currentDelegate = viewModel.currentDelegate,
+            poseLandmarkerHelperListener = object : PoseLandmarkerHelper.LandmarkerListener {
+                override fun onError(error: String, errorCode: Int) {
+                    Log.e("CameraPreview", "Error: $error")
                 }
-            )
-        }
-
-        DisposableEffect(Unit) {
-            onDispose {
-                poseLandmarkerHelper.clearPoseLandmarker()
-                cameraExecutor.shutdown()
+                override fun onResults(resultBundle: PoseLandmarkerHelper.ResultBundle) {
+                    onPoseResult(resultBundle)
+                }
             }
-        }
-
-        AndroidView(
-            factory = { ctx ->
-                val previewView = PreviewView(ctx).apply {
-                    scaleType = PreviewView.ScaleType.FILL_START
-                }
-                val cameraProviderFuture = ProcessCameraProvider.getInstance(ctx)
-                cameraProviderFuture.addListener({
-                    val cameraProvider = cameraProviderFuture.get()
-
-                    val preview = Preview.Builder().build().also {
-                        it.setSurfaceProvider(previewView.surfaceProvider)
-                    }
-
-                    val imageAnalyzer = ImageAnalysis.Builder()
-                        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                        .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
-                        .build()
-                        .also {
-                            it.setAnalyzer(cameraExecutor) { imageProxy ->
-                                poseLandmarkerHelper.detectLiveStream(imageProxy, false)
-                            }
-                        }
-
-                    try {
-                        cameraProvider.unbindAll()
-                        cameraProvider.bindToLifecycle(
-                            lifecycleOwner,
-                            CameraSelector.DEFAULT_FRONT_CAMERA,
-                            preview,
-                            imageAnalyzer
-                        )
-                    } catch (exc: Exception) {
-                        Log.e("CameraScreen", "Use case binding failed", exc)
-                    }
-                }, ContextCompat.getMainExecutor(ctx))
-                previewView
-            },
-            modifier = Modifier.fillMaxSize()
         )
     }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            poseLandmarkerHelper.clearPoseLandmarker()
+            cameraExecutor.shutdown()
+        }
+    }
+
+    AndroidView(
+        factory = { ctx ->
+            val previewView = PreviewView(ctx).apply {
+                scaleType = PreviewView.ScaleType.FILL_START
+            }
+            val cameraProviderFuture = ProcessCameraProvider.getInstance(ctx)
+            cameraProviderFuture.addListener({
+                val cameraProvider = cameraProviderFuture.get()
+
+                val preview = Preview.Builder().build().also {
+                    it.setSurfaceProvider(previewView.surfaceProvider)
+                }
+
+                val imageAnalyzer = ImageAnalysis.Builder()
+                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                    .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
+                    .build()
+                    .also {
+                        it.setAnalyzer(cameraExecutor) { imageProxy ->
+                            poseLandmarkerHelper.detectLiveStream(imageProxy, false)
+                        }
+                    }
+
+                try {
+                    cameraProvider.unbindAll()
+                    cameraProvider.bindToLifecycle(
+                        lifecycleOwner,
+                        CameraSelector.DEFAULT_FRONT_CAMERA,
+                        preview,
+                        imageAnalyzer
+                    )
+                } catch (exc: Exception) {
+                    Log.e("CameraScreen", "Use case binding failed", exc)
+                }
+            }, ContextCompat.getMainExecutor(ctx))
+            previewView
+        },
+        modifier = Modifier.fillMaxSize()
+    )
+}
 /*}*/
