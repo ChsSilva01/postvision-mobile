@@ -9,16 +9,12 @@ import androidx.compose.ui.graphics.Color
 import com.google.mediapipe.tasks.vision.core.RunningMode
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarker
 import com.google.mediapipe.tasks.vision.poselandmarker.PoseLandmarkerResult
+import kotlin.math.max
 import kotlin.math.min
 
 /**
- * Dibuja los resultados de PoseLandmarker sobre un lienzo.
- *
- * @param results Resultados de PoseLandmarker a dibujar.
- * @param imageWidth Ancho de la imagen original.
- * @param imageHeight Alto de la imagen original.
- * @param runningMode Modo de ejecución actual (LIVE_STREAM o IMAGE).
- * @param isFrontCamera Si es true, invierte horizontalmente los puntos para el modo espejo.
+ * Desenha os resultados do PoseLandmarker sobre a visualização da câmera.
+ * Corrige o alinhamento horizontal/vertical e o espelhamento da câmera frontal.
  */
 @Composable
 fun OverlayCanvas(
@@ -33,43 +29,53 @@ fun OverlayCanvas(
 
     if (results != null) {
         Canvas(modifier = Modifier.fillMaxSize()) {
-            val scaleFactor = min(size.width / imageWidth, size.height / imageHeight)
+            val scaleX = size.width / imageWidth
+            val scaleY = size.height / imageHeight
+            val scaleFactor = max(scaleX, scaleY)
+
             val scaledImageWidth = imageWidth * scaleFactor
             val scaledImageHeight = imageHeight * scaleFactor
-
-            val offsetX: Float
-            val offsetY: Float
-
-            if (runningMode == RunningMode.LIVE_STREAM) {
-                // Esta mierda se desfasa a la izquierda alachingada
-                offsetX = (size.width - scaledImageWidth) / 2 + 150
-                offsetY = (size.height - scaledImageHeight) / 2
-            } else {
-                // Para la galería
-                offsetX = (size.width - scaledImageWidth) / 2
-                offsetY = (size.height - scaledImageHeight) / 2
-            }
+            val offsetX = (size.width - scaledImageWidth) / 2
+            val offsetY = (size.height - scaledImageHeight) / 2
 
             for (landmarkList in results.landmarks()) {
-                // Dibuja las líneas de conexión
                 PoseLandmarker.POSE_LANDMARKS.forEach {
                     val start = landmarkList[it!!.start()]
                     val end = landmarkList[it.end()]
 
-                    val startX = transformX(start.x(), scaledImageWidth, offsetX, isFrontCamera, runningMode)
+                    val startX = transformX(
+                        start.x(),
+                        scaledImageWidth,
+                        offsetX,
+                        isFrontCamera
+                    )
                     val startY = start.y() * scaledImageHeight + offsetY
-                    val endX = transformX(end.x(), scaledImageWidth, offsetX, isFrontCamera, runningMode)
+                    val endX = transformX(
+                        end.x(),
+                        scaledImageWidth,
+                        offsetX,
+                        isFrontCamera
+                    )
                     val endY = end.y() * scaledImageHeight + offsetY
 
-                    drawLine(color = lineColor, start = Offset(startX, startY), end = Offset(endX, endY), strokeWidth = 8f)
+                    drawLine(
+                        color = lineColor,
+                        start = Offset(startX, startY),
+                        end = Offset(endX, endY),
+                        strokeWidth = 8f
+                    )
                 }
 
-                // Dibuja los puntos
                 for (lm in landmarkList) {
-                    val pointX = transformX(lm.x(), scaledImageWidth, offsetX, isFrontCamera, runningMode)
-                    val pointY = lm.y() * scaledImageHeight + offsetY
+                    val x = transformX(
+                        lm.x(),
+                        scaledImageWidth,
+                        offsetX,
+                        isFrontCamera
+                    )
+                    val y = lm.y() * scaledImageHeight + offsetY
 
-                    drawCircle(color = pointColor, radius = 12f, center = Offset(pointX, pointY))
+                    drawCircle(color = pointColor, radius = 10f, center = Offset(x, y))
                 }
             }
         }
@@ -77,20 +83,18 @@ fun OverlayCanvas(
 }
 
 /**
- * Ajusta la coordenada X. Para la cámara frontal en vivo, la invierte (efecto espejo).
+ * Ajusta a coordenada X para o modo espelho (câmera frontal).
  */
 private fun transformX(
     normalizedX: Float,
     scaledImageWidth: Float,
     offsetX: Float,
-    isFrontCamera: Boolean,
-    runningMode: RunningMode
+    isFrontCamera: Boolean
 ): Float {
     val x = normalizedX * scaledImageWidth + offsetX
-
-    if (isFrontCamera && runningMode == RunningMode.LIVE_STREAM) {
-        return scaledImageWidth - x + 2 * offsetX
+    return if (isFrontCamera) {
+        scaledImageWidth + offsetX - (x - offsetX)
+    } else {
+        x
     }
-
-    return x
 }

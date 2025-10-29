@@ -244,7 +244,7 @@ fun CameraPreview(
     // A PreviewView é criada e lembrada no Composable
     val previewView = remember {
         PreviewView(context).apply {
-            scaleType = PreviewView.ScaleType.FILL_START
+            scaleType = PreviewView.ScaleType.FILL_CENTER
         }
     }
 
